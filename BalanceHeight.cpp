@@ -1,6 +1,6 @@
 #include <bits/stdc++.h> 
 #include <algorithm>
-
+// IF BOTH HAD BECAME UNBALANCED I.E < 0  THEN LEFT*RIGHT WOULD HAD BEEN POSITIVE
 using namespace std; 
 
 
@@ -20,10 +20,14 @@ int isBalanced(node* root){
     if(root==NULL) return 0;
     int left_height=isBalanced(root->left);
     int right_height=isBalanced(root->right);
-    if( left_height*right_height < 0 ){
+    if( left_height< 0 ){
         // One Has returned -1 Meaning not balanced
         return -1;
-    }else{
+    }else if( right_height< 0 ){
+        // One Has returned -1 Meaning not balanced
+        return -1;
+    }
+    else{
         if(abs(left_height-right_height)<=1){
             // balanced Hence return It's heoght
             return 1+max(left_height,right_height);
